@@ -7,6 +7,10 @@ const bcrypt = require('bcryptjs');
 // Load environment variables
 dotenv.config({ path: './config.env' });
 
+// Use environment variable with fallback for development
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/todoapp';
+const PORT = process.env.PORT || 5000;
+
 const app = express();
 
 // Middleware
@@ -15,7 +19,7 @@ app.use(express.json());
 app.use(express.static('.'));
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(MONGODB_URI)
     .then(() => console.log('Connected to MongoDB Atlas'))
     .catch(err => console.error('Could not connect to MongoDB:', err));
 
@@ -131,7 +135,6 @@ app.delete('/api/tasks/:id', async (req, res) => {
     }
 });
 
-const port = process.env.PORT || 5000;
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

@@ -21,8 +21,8 @@ A full-stack to-do list application with user authentication and MongoDB integra
 
 1. Clone the repository
 ```bash
-git clone [your-repo-url]
-cd [your-repo-name]
+git clone https://github.com/nathanclem100/To-Do-App.git
+cd To-Do-App
 ```
 
 2. Install dependencies
@@ -30,11 +30,18 @@ cd [your-repo-name]
 npm install
 ```
 
-3. Create a `config.env` file in the root directory with the following content:
-```
-MONGODB_URI=your_mongodb_connection_string
-PORT=5000
-```
+3. Set up environment variables:
+   - Copy `config.env.example` to `config.env`
+   - Update the environment variables in `config.env` with your values:
+     ```
+     MONGODB_URI=your_mongodb_connection_string
+     PORT=5000
+     ```
+
+   For production deployment:
+   - Use environment variables provided by your hosting platform
+   - Never commit sensitive credentials to version control
+   - Use secrets management for sensitive data
 
 4. Start the server
 ```bash
@@ -42,6 +49,19 @@ node server.js
 ```
 
 5. Open `signup.html` in your browser to start using the application
+
+## Environment Variables
+
+The application uses the following environment variables:
+
+- `MONGODB_URI`: Your MongoDB connection string
+- `PORT`: The port number for the server (default: 5000)
+
+For security:
+- Never commit the actual `config.env` file to version control
+- Use environment variables in production
+- Use secrets management in your deployment platform
+- Keep your MongoDB credentials private
 
 ## Usage
 
@@ -51,6 +71,15 @@ node server.js
 4. Delete tasks using the delete button
 5. Filter tasks using the All/Active/Completed buttons
 6. Logout when finished
+
+## Deployment
+
+When deploying to production:
+
+1. Set up environment variables in your hosting platform
+2. Never expose sensitive credentials in your code
+3. Use HTTPS for all connections
+4. Enable MongoDB Atlas network security settings
 
 ## Contributing
 
