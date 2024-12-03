@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     async function loadTasks() {
         try {
-            const response = await fetch(`http://localhost:5000/api/tasks/${userData.userId}`);
+            const response = await fetch(`/api/tasks/${userData.userId}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch tasks');
             }
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const taskText = taskInput.value.trim();
         if (taskText) {
             try {
-                const response = await fetch('http://localhost:5000/api/tasks', {
+                const response = await fetch('/api/tasks', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const task = window.tasks.find(t => t._id === taskId);
         if (task) {
             try {
-                const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+                const response = await fetch(`/api/tasks/${taskId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     async function deleteTask(taskId) {
         try {
-            const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+            const response = await fetch(`/api/tasks/${taskId}`, {
                 method: 'DELETE'
             });
 

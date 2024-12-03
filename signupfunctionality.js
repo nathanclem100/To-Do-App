@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (isValid) {
             try {
-                const response = await fetch('http://localhost:5000/api/signup', {
+                const response = await fetch('/api/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('userData', JSON.stringify(userData));
                 
                 // Redirect to main page
-                window.location.href = 'mwd.html';
+                window.location.href = '/todo';
             } catch (error) {
                 showError(emailInput, error.message);
             }

@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const bcrypt = require('bcryptjs');
+const path = require('path');
 
 // Load environment variables
 dotenv.config({ path: './config.env' });
@@ -16,7 +17,9 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static('.'));
+
+// Serve static files
+app.use(express.static(path.join(__dirname)));
 
 // Connect to MongoDB
 mongoose.connect(MONGODB_URI)
@@ -43,6 +46,15 @@ const User = mongoose.model('User', userSchema);
 const Task = mongoose.model('Task', taskSchema);
 
 // Routes
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'signup.html'));
+});
+
+app.get('/todo', (req, res) => {
+    res.sendFile(path.join(__dirname, 'mwd.html'));
+});
+
+// API Routes
 app.post('/api/signup', async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -133,6 +145,11 @@ app.delete('/api/tasks/:id', async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: 'Error deleting task', error: error.message });
     }
+});
+
+// Catch all route to handle client-side routing
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'signup.html'));
 });
 
 app.listen(PORT, () => {
