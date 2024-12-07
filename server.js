@@ -47,11 +47,43 @@ const Task = mongoose.model('Task', taskSchema);
 
 // Routes
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'signup.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.get('/todo', (req, res) => {
     res.sendFile(path.join(__dirname, 'mwd.html'));
+});
+
+// Login route
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        // Find user by email
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        // Compare password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        res.status(200).json({ 
+            message: 'Login successful',
+            userId: user._id 
+        });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Serve login page
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'login.html'));
 });
 
 // API Routes
@@ -149,7 +181,7 @@ app.delete('/api/tasks/:id', async (req, res) => {
 
 // Catch all route to handle client-side routing
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'signup.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {

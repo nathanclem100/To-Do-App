@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Todo App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #1a73e8;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+
+        .login {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+        }
+
+        .login:hover {
+            background-color: #1557b0;
+        }
+
+        .register {
+            background-color: white;
+            color: #1a73e8;
+            border: 2px solid #1a73e8;
+        }
+
+        .register:hover {
+            background-color: #f8f9fa;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the To do App</h1>
+        <p>Organize your tasks efficiently and boost your productivity</p>
+        <div class="buttons">
+            <a href="/login" class="button login">Login</a>
+            <a href="/signup" class="button register">Register</a>
+        </div>
+        <div class="footer">
+            Designed by Nathan Clem
+        </div>
+    </div>
+</body>
+</html>
